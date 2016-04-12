@@ -6,7 +6,7 @@
 [![Total Downloads](https://poser.pugx.org/markenwerk/qr-code-suite/downloads)](https://packagist.org/packages/markenwerk/qr-code-suite)
 [![License](https://poser.pugx.org/markenwerk/qr-code-suite/license)](https://packagist.org/packages/markenwerk/qr-code-suite)
 
-A collection of classes to provide second factor authentication (Yubico OTP, TOTP, HOTP, GoogleAuthenticator) server-side.
+A collection of classes to QR enccode strings and render them as PNG, TIFF and vectorized EPS.
 
 ## Installation
 

@@ -1,7 +1,7 @@
 {
   "name": "markenwerk/qr-code-suite",
   "type": "library",
-  "description": "A collection of classes to ",
+  "description": "A collection of classes to QR enccode strings and render them as PNG, TIFF and vectorized EPS.",
   "keywords": [
     "qr code",
     "qr encode"

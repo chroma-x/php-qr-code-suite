@@ -66,15 +66,15 @@ class QrCodePathFinder
 	}
 
 	/**
-	 * @param int $x
-	 * @param int $y
+	 * @param int $xPosition
+	 * @param int $yPosition
 	 * @return bool
 	 */
-	private function isCorner($x, $y)
+	private function isCorner($xPosition, $yPosition)
 	{
-		$currentPoint = $this->qrCode->getRow($y)->getPoint($x);
-		$neighbourPoint = $this->qrCode->getRow($y - 1)->getPoint($x - 1);
-		if ($neighbourPoint == $this->qrCode->getRow($y)->getPoint($x - 1) && $neighbourPoint == $this->qrCode->getRow($y - 1)->getPoint($x)) {
+		$currentPoint = $this->qrCode->getRow($yPosition)->getPoint($xPosition);
+		$neighbourPoint = $this->qrCode->getRow($yPosition - 1)->getPoint($xPosition - 1);
+		if ($neighbourPoint == $this->qrCode->getRow($yPosition)->getPoint($xPosition - 1) && $neighbourPoint == $this->qrCode->getRow($yPosition - 1)->getPoint($xPosition)) {
 			if ($neighbourPoint != $currentPoint) {
 				return true;
 			}
@@ -83,90 +83,90 @@ class QrCodePathFinder
 	}
 
 	/**
-	 * @param int $startX
-	 * @param int $startY
+	 * @param int $startXPosition
+	 * @param int $startYPosition
 	 * @param bool $active
 	 * @return array
 	 */
-	private function traceComposite($startX, $startY, $active)
+	private function traceComposite($startXPosition, $startYPosition, $active)
 	{
 
-		$x = $startX;
-		$y = $startY;
+		$xPosition = $startXPosition;
+		$yPosition = $startYPosition;
 		$switched = !$active;
 
 		$direction = self::DIRECTION_RIGHT;
 
 		$path = new Path();
-		$path->addPoint($this->getPoint($x, $y));
+		$path->addPoint($this->getPoint($xPosition, $yPosition));
 
 		do {
 			switch ($direction) {
 				case self::DIRECTION_RIGHT:
-					$current = $this->qrCode->getRow($y)->getPoint($x);
-					$other = $this->qrCode->getRow($y - 1)->getPoint($x);
+					$current = $this->qrCode->getRow($yPosition)->getPoint($xPosition);
+					$other = $this->qrCode->getRow($yPosition - 1)->getPoint($xPosition);
 					if ($current != $other) {
 						$switched = $other;
-						$x++;
+						$xPosition++;
 					} else {
-						$path->addPoint($this->getPoint($x, $y));
+						$path->addPoint($this->getPoint($xPosition, $yPosition));
 						$direction = ($switched == $other) ? self::DIRECTION_DOWN : self::DIRECTION_UP;
 					}
 					break;
 				case self::DIRECTION_UP:
-					$current = $this->qrCode->getRow($y - 1)->getPoint($x);
-					$other = $this->qrCode->getRow($y - 1)->getPoint($x - 1);
+					$current = $this->qrCode->getRow($yPosition - 1)->getPoint($xPosition);
+					$other = $this->qrCode->getRow($yPosition - 1)->getPoint($xPosition - 1);
 					if ($current != $other) {
 						$switched = $other;
-						$y--;
+						$yPosition--;
 					} else {
-						$path->addPoint($this->getPoint($x, $y));
+						$path->addPoint($this->getPoint($xPosition, $yPosition));
 						$direction = ($switched == $other) ? self::DIRECTION_RIGHT : self::DIRECTION_LEFT;
-						if ($direction == self::DIRECTION_RIGHT && $this->isCorner($x, $y)) {
-							$this->visited[$y][$x] = true;
+						if ($direction == self::DIRECTION_RIGHT && $this->isCorner($xPosition, $yPosition)) {
+							$this->visited[$yPosition][$xPosition] = true;
 						}
 					}
 					break;
 				case self::DIRECTION_LEFT:
-					$current = $this->qrCode->getRow($y - 1)->getPoint($x - 1);
-					$other = $this->qrCode->getRow($y)->getPoint($x - 1);
+					$current = $this->qrCode->getRow($yPosition - 1)->getPoint($xPosition - 1);
+					$other = $this->qrCode->getRow($yPosition)->getPoint($xPosition - 1);
 					if ($current != $other) {
 						$switched = $other;
-						$x--;
+						$xPosition--;
 					} else {
-						$path->addPoint($this->getPoint($x, $y));
+						$path->addPoint($this->getPoint($xPosition, $yPosition));
 						$direction = ($switched == $other) ? self::DIRECTION_UP : self::DIRECTION_DOWN;
-						if ($direction == self::DIRECTION_DOWN && $this->isCorner($x, $y)) {
-							$this->visited[$y][$x] = true;
+						if ($direction == self::DIRECTION_DOWN && $this->isCorner($xPosition, $yPosition)) {
+							$this->visited[$yPosition][$xPosition] = true;
 						}
 					}
 					break;
 				case self::DIRECTION_DOWN:
-					$current = $this->qrCode->getRow($y)->getPoint($x - 1);
-					$other = $this->qrCode->getRow($y)->getPoint($x);
+					$current = $this->qrCode->getRow($yPosition)->getPoint($xPosition - 1);
+					$other = $this->qrCode->getRow($yPosition)->getPoint($xPosition);
 					if ($current != $other) {
 						$switched = $other;
-						$y++;
+						$yPosition++;
 					} else {
-						$path->addPoint($this->getPoint($x, $y));
+						$path->addPoint($this->getPoint($xPosition, $yPosition));
 						$direction = ($switched == $other) ? self::DIRECTION_LEFT : self::DIRECTION_RIGHT;
 					}
 					break;
 			}
-		} while (!($x == $startX && $y == $startY));
+		} while (!($xPosition == $startXPosition && $yPosition == $startYPosition));
 
 		return $path;
 
 	}
 
 	/**
-	 * @param int $x
-	 * @param int $y
+	 * @param int $xPosition
+	 * @param int $yPosition
 	 * @return PathPoint
 	 */
-	private function getPoint($x, $y)
+	private function getPoint($xPosition, $yPosition)
 	{
-		return new PathPoint($x - 1, $y - 1);
+		return new PathPoint($xPosition - 1, $yPosition - 1);
 	}
 
 }
