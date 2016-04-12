@@ -16,7 +16,7 @@ To use the QR Code Suite [`qrencode`](https://wiki.ubuntuusers.de/qrencode/) and
 ```{json}
 {
    	"require": {
-        "markenwerk/qr-code-suite": "~1.0"
+        "markenwerk/qr-code-suite": "~2.0"
     }
 }
 ```
