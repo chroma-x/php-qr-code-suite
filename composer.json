@@ -1,0 +1,33 @@
+{
+  "name": "markenwerk/qr-code-suite",
+  "type": "library",
+  "description": "A collection of classes to ",
+  "keywords": [
+    "qr code",
+    "qr encode"
+  ],
+  "homepage": "http://markenwerk.net/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Torsten Krause",
+      "email": "tk@markenwerk.net",
+      "homepage": "http://markenwerk.net"
+    },
+    {
+      "name": "Martin Brecht-Precht",
+      "email": "mb@markenwerk.net",
+      "homepage": "http://markenwerk.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "QrCodeSuite\\": ""
+    }
+  },
+  "require": {
+    "php": ">=5.3",
+    "ext-gd": "*",
+    "ext-imagick": "*"
+  }
+}
