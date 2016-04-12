@@ -1,7 +1,6 @@
 # QR Code Suite
 
 [![Code Climate](https://codeclimate.com/github/markenwerk/php-qr-code-suite/badges/gpa.svg)](https://codeclimate.com/github/markenwerk/php-qr-code-suite)
-[![Issue Count](https://codeclimate.com/github/markenwerk/php-qr-code-suite/badges/issue_count.svg)](https://codeclimate.com/github/markenwerk/php-qr-code-suite)
 [![Latest Stable Version](https://poser.pugx.org/markenwerk/qr-code-suite/v/stable)](https://packagist.org/packages/markenwerk/qr-code-suite)
 [![Total Downloads](https://poser.pugx.org/markenwerk/qr-code-suite/downloads)](https://packagist.org/packages/markenwerk/qr-code-suite)
 [![License](https://poser.pugx.org/markenwerk/qr-code-suite/license)](https://packagist.org/packages/markenwerk/qr-code-suite)
@@ -24,13 +23,38 @@ A collection of classes to QR enccode strings and render them as PNG, TIFF and v
 
 ```{php}  
 require_once('path/to/vendor/autoload.php');
-
-use QrCodeSuite;
 ```
 
 ### Encoding data as QR code block data
 
+```{php}
+use QrCodeSuite\QrEncode\QrEncoder;
 
+// Encode the data as QR code block data
+$encoder = new QrEncoder();
+$qrCodeData = $encoder
+	->setLevel(QrEncoder::QR_CODE_LEVEL_LOW)
+	->setTempDir('path/to/writable/directory')
+	->encodeQrCode('https://github.com/markenwerk/php-qr-code-suite');
+```
+
+### Render encoded QR code block data as image
+
+```{php}
+use QrCodeSuite\QrRender;
+
+// Render the encoded QR code block data as RGB PNG
+$renderer = new QrRender\QrCodeRendererPng();
+$renderer->render($qrCodeData, 'path/to/qr-code.png');
+
+// Render the encoded QR code block data as CMYK TIFF
+$renderer = new QrRender\QrCodeRendererTiff();
+$renderer->render($qrCodeData, 'path/to/qr-code.tif');
+
+// Render the encoded QR code block data as CMYK vectorized EPS
+$renderer = new QrRender\QrCodeRendererEps();
+$renderer->render($qrCodeData, 'path/to/qr-code.eps');
+```
 
 ---
 
