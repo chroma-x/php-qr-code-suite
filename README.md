@@ -7,6 +7,10 @@
 
 A collection of classes to QR enccode strings and render them as PNG, TIFF and vectorized EPS.
 
+## Requirements
+
+To use the QR Code Suite [`qrencode`](https://wiki.ubuntuusers.de/qrencode/) and [`imagick`](http://php.net/manual/de/book.imagick.php) have to be available. 
+
 ## Installation
 
 ```{json}
