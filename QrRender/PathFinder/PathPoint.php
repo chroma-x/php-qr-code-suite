@@ -13,39 +13,39 @@ class PathPoint
 	/**
 	 * @var int
 	 */
-	private $x;
+	private $xPosition;
 
 	/**
 	 * @var int
 	 */
-	private $y;
+	private $yPosition;
 
 	/**
 	 * PathPoint constructor.
 	 *
-	 * @param int $x
-	 * @param int $y
+	 * @param int $xPosition
+	 * @param int $yPosition
 	 */
-	public function __construct($x, $y)
+	public function __construct($xPosition, $yPosition)
 	{
-		$this->x = $x;
-		$this->y = $y;
+		$this->xPosition = $xPosition;
+		$this->yPosition = $yPosition;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getX()
+	public function getXPosition()
 	{
-		return $this->x;
+		return $this->xPosition;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getY()
+	public function getYPosition()
 	{
-		return $this->y;
+		return $this->yPosition;
 	}
 
 }

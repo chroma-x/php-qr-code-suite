@@ -82,9 +82,9 @@ class QrCodeRendererEps implements Base\QrCodeRendererInterface
 	 */
 	private function convertPoint(PathPoint $point)
 	{
-		$x = self::POINTS_PER_BLOCK * ($point->getX() + self::MARGIN);
-		$y = $this->epsHeight - self::POINTS_PER_BLOCK * ($point->getY() + self::MARGIN);
-		return $x . ' ' . $y . ' ';
+		$xPosition = self::POINTS_PER_BLOCK * ($point->getXPosition() + self::MARGIN);
+		$yPosition = $this->epsHeight - self::POINTS_PER_BLOCK * ($point->getYPosition() + self::MARGIN);
+		return $xPosition . ' ' . $yPosition . ' ';
 	}
 
 }
