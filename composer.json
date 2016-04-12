@@ -3,8 +3,10 @@
   "type": "library",
   "description": "A collection of classes to QR enccode strings and render them as PNG, TIFF and vectorized EPS.",
   "keywords": [
-    "qr code",
-    "qr encode"
+    "qr",
+    "quick response",
+    "code",
+    "encode"
   ],
   "homepage": "http://markenwerk.net/",
   "license": "MIT",
