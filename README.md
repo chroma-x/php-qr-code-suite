@@ -28,6 +28,10 @@ require_once('path/to/vendor/autoload.php');
 use QrCodeSuite;
 ```
 
+### Encoding data as QR code block data
+
+
+
 ---
 
 ## License

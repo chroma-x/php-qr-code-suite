@@ -1,11 +1,11 @@
 <?php
 
-namespace OathServerSuite\QrEncode\QrCode;
+namespace QrCodeSuite\QrEncode\QrCode;
 
 /**
  * Class QrCodePointRow
  *
- * @package OathServerSuite\QrEncode
+ * @package QrCodeSuite\QrEncode
  */
 class QrCodePointRow
 {

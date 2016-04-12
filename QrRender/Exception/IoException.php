@@ -1,11 +1,11 @@
 <?php
 
-namespace OathServerSuite\QrRender\Exception;
+namespace QrCodeSuite\QrRender\Exception;
 
 /**
  * Class IoException
  *
- * @package OathServerSuite\QrRender\Exception
+ * @package QrCodeSuite\QrRender\Exception
  */
 class IoException extends \Exception
 {

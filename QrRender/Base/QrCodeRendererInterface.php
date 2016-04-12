@@ -1,13 +1,13 @@
 <?php
 
-namespace OathServerSuite\QrRender\Base;
+namespace QrCodeSuite\QrRender\Base;
 
-use OathServerSuite\QrEncode\QrCode\QrCode;
+use QrCodeSuite\QrEncode\QrCode\QrCode;
 
 /**
  * Interface QrCodeRendererInterface
  *
- * @package OathServerSuite\QrRender\Base
+ * @package QrCodeSuite\QrRender\Base
  */
 interface QrCodeRendererInterface
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace OathServerSuite\QrEncode;
+namespace QrCodeSuite\QrEncode;
 
-use OathServerSuite\QrEncode\Exception\QrEncoderException;
-use OathServerSuite\QrEncode\QrCode\QrCode;
-use OathServerSuite\QrEncode\QrCode\QrCodePointRow;
-use OathServerSuite\QrEncode\QrCode\QrCodePoint;
+use QrCodeSuite\QrEncode\Exception\QrEncoderException;
+use QrCodeSuite\QrEncode\QrCode\QrCode;
+use QrCodeSuite\QrEncode\QrCode\QrCodePointRow;
+use QrCodeSuite\QrEncode\QrCode\QrCodePoint;
 
 /**
  * Class QrEncoder
  *
- * @package OathServerSuite\QrEncode
+ * @package QrCodeSuite\QrEncode
  */
 class QrEncoder
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace OathServerSuite\QrRender\PathFinder;
+namespace QrCodeSuite\QrRender\PathFinder;
 
 /**
  * Class PathPoint
  *
- * @package OathServerSuite\QrRender\PathFinder
+ * @package QrCodeSuite\QrRender\PathFinder
  */
 class PathPoint
 {

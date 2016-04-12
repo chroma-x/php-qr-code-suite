@@ -1,16 +1,16 @@
 <?php
 
-namespace OathServerSuite\QrRender;
+namespace QrCodeSuite\QrRender;
 
-use OathServerSuite\QrEncode\QrCode\QrCode;
-use OathServerSuite\QrRender\Exception\IoException;
-use OathServerSuite\QrRender\PathFinder\PathPoint;
-use OathServerSuite\QrRender\PathFinder\QrCodePathFinder;
+use QrCodeSuite\QrEncode\QrCode\QrCode;
+use QrCodeSuite\QrRender\Exception\IoException;
+use QrCodeSuite\QrRender\PathFinder\PathPoint;
+use QrCodeSuite\QrRender\PathFinder\QrCodePathFinder;
 
 /**
  * Class QrCodeRendererEps
  *
- * @package OathServerSuite\QrRender
+ * @package QrCodeSuite\QrRender
  */
 class QrCodeRendererEps implements Base\QrCodeRendererInterface
 {

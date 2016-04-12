@@ -1,13 +1,13 @@
 <?php
 
-namespace OathServerSuite\QrRender\PathFinder;
+namespace QrCodeSuite\QrRender\PathFinder;
 
-use OathServerSuite\QrEncode\QrCode\QrCode;
+use QrCodeSuite\QrEncode\QrCode\QrCode;
 
 /**
  * Class QrCodePathFinder
  *
- * @package OathServerSuite\QrRender\PathFinder
+ * @package QrCodeSuite\QrRender\PathFinder
  */
 class QrCodePathFinder
 {

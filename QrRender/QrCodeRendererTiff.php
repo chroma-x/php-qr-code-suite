@@ -1,14 +1,14 @@
 <?php
 
-namespace OathServerSuite\QrRender;
+namespace QrCodeSuite\QrRender;
 
-use OathServerSuite\QrEncode\QrCode\QrCode;
-use OathServerSuite\QrRender\Exception\IoException;
+use QrCodeSuite\QrEncode\QrCode\QrCode;
+use QrCodeSuite\QrRender\Exception\IoException;
 
 /**
  * Class QrCodeRendererTiff
  *
- * @package OathServerSuite\QrRender
+ * @package QrCodeSuite\QrRender
  */
 class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 {
