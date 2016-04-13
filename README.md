@@ -1,5 +1,6 @@
 # QR Code Suite
 
+[![Build Status](https://travis-ci.org/markenwerk/php-qr-code-suite.svg?branch=master)](https://travis-ci.org/markenwerk/php-qr-code-suite)
 [![Code Climate](https://codeclimate.com/github/markenwerk/php-qr-code-suite/badges/gpa.svg)](https://codeclimate.com/github/markenwerk/php-qr-code-suite)
 [![Latest Stable Version](https://poser.pugx.org/markenwerk/qr-code-suite/v/stable)](https://packagist.org/packages/markenwerk/qr-code-suite)
 [![Total Downloads](https://poser.pugx.org/markenwerk/qr-code-suite/downloads)](https://packagist.org/packages/markenwerk/qr-code-suite)
