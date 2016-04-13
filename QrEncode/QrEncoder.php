@@ -120,8 +120,8 @@ class QrEncoder
 		} else {
 			throw new QrEncoderException('QR encoder internal error');
 		}
-		$image = imagecreatefrompng($pngPath);
-		if (!isset($image)) {
+		$image = @imagecreatefrompng($pngPath);
+		if ($image === false) {
 			throw new QrEncoderException('GD lib internal error');
 		}
 		// Delete file created by qrencode
