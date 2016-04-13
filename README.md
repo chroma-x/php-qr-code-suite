@@ -62,6 +62,14 @@ $renderer->render($qrCodeData, 'path/to/qr-code.eps');
 
 ---
 
+## TODOs
+
+- Decorate the code base with some unit tests.
+- Allow configuration of the QR codes like: 
+  - Foreground color
+  - Background color
+  - Image size of PNG and TIFF
+
 ## License
 
 QR Code Suite is under the MIT license.
