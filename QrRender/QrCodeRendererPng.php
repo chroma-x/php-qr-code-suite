@@ -64,9 +64,13 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 		$canvas->drawImage($draw);
 
 		// Write out the image
-		$canvas->writeImage($filename);
+		$writeSuccess = @$canvas->writeImage($filename);
 		$canvas->clear();
 		$canvas->destroy();
+
+		if($writeSuccess !== true){
+			throw new IoException('QR code output file not writable.');
+		}
 	}
 
 }

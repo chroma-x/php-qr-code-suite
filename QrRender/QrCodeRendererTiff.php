@@ -67,11 +67,15 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 		}
 
 		// Write out the image
-		$canvas->writeImage($filename);
+		$writeSuccess = @$canvas->writeImage($filename);
 		$canvas->clear();
 		$canvas->destroy();
 		$block->clear();
 		$block->destroy();
+
+		if ($writeSuccess !== true) {
+			throw new IoException('QR code output file not writable');
+		}
 	}
 
 }

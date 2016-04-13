@@ -73,7 +73,10 @@ class QrCodeRendererEps implements Base\QrCodeRendererInterface
 		$epsSource[] = 'eofill';
 		$epsSource[] = '%%EOF';
 
-		file_put_contents($filename, implode("\n", $epsSource));
+		$bytes = @file_put_contents($filename, implode("\n", $epsSource));
+		if ($bytes === false) {
+			throw new IoException('QR code output file not writable.');
+		}
 	}
 
 	/**
