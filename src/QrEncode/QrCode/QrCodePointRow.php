@@ -80,4 +80,12 @@ class QrCodePointRow
 		return $this;
 	}
 
+	/**
+	 * @return int
+	 */
+	public function countPoints()
+	{
+		return count($this->points);
+	}
+
 }

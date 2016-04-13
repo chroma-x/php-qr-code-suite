@@ -142,4 +142,12 @@ class QrCode
 		return $this;
 	}
 
+	/**
+	 * @return int
+	 */
+	public function countRows()
+	{
+		return count($this->rows);
+	}
+
 }

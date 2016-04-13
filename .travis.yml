@@ -1,0 +1,28 @@
+language: php
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y qrencode
+  - pear config-set preferred_state beta
+  - printf "\n" | pecl install imagick
+  - echo "extension=imagick.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - php -m
+
+branches:
+  only:
+    - master
+
+php:
+  - '5.3'
+  - '5.4'
+  - '5.5'
+  - '7.0'
+  - hhvm
+
+install:
+  - composer install
+
+matrix:
+  allow_failures:
+    - php: hhvm
+    - php: '5.3'
