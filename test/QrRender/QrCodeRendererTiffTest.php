@@ -3,6 +3,7 @@
 namespace QrCodeSuite\QrRender;
 
 use QrCodeSuite\QrEncode\QrEncoder;
+use QrCodeSuite\QrRender\Color\CmykColor;
 
 /**
  * Class QrCodeRendererTiffTest
@@ -26,7 +27,10 @@ class QrCodeRendererTiffTest extends \PHPUnit_Framework_TestCase
 		// Render image
 		$qrCodeOutputPath = __DIR__ . '/tmp/qrcode-test.tif';
 		$qrCodeRendererPng = new QrCodeRendererTiff();
-		$qrCodeRendererPng->render($qrCode, $qrCodeOutputPath);
+		$qrCodeRendererPng
+			->setForegroundColor(new CmykColor(60, 80, 0, 0))
+			->setBackgroundColor(new CmykColor(40, 100, 100, 70))
+			->render($qrCode, $qrCodeOutputPath);
 
 		// Test QR code output file exists
 		$this->assertFileExists($qrCodeOutputPath);

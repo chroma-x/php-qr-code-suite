@@ -3,6 +3,7 @@
 namespace QrCodeSuite\QrRender;
 
 use QrCodeSuite\QrEncode\QrEncoder;
+use QrCodeSuite\QrRender\Color\RgbColor;
 
 /**
  * Class QrCodeRendererPngTest
@@ -26,7 +27,10 @@ class QrCodeRendererPngTest extends \PHPUnit_Framework_TestCase
 		// Render image
 		$qrCodeOutputPath = __DIR__ . '/tmp/qrcode-test.png';
 		$qrCodeRendererPng = new QrCodeRendererPng();
-		$qrCodeRendererPng->render($qrCode, $qrCodeOutputPath);
+		$qrCodeRendererPng
+			->setForegroundColor(new RgbColor(255, 0, 255))
+			->setBackgroundColor(new RgbColor(0, 0, 0))
+			->render($qrCode, $qrCodeOutputPath);
 
 		// Test QR code output file exists
 		$this->assertFileExists($qrCodeOutputPath);

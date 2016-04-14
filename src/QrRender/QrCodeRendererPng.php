@@ -3,6 +3,7 @@
 namespace QrCodeSuite\QrRender;
 
 use QrCodeSuite\QrEncode\QrCode\QrCode;
+use QrCodeSuite\QrRender\Color\RgbColor;
 use QrCodeSuite\QrRender\Exception\IoException;
 
 /**
@@ -14,6 +15,61 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 {
 
 	const MARGIN = 2;
+
+	/**
+	 * @var RgbColor
+	 */
+	private $foregroundColor;
+
+	/**
+	 * @var RgbColor
+	 */
+	private $backgroundColor;
+
+	/**
+	 * QrCodeRendererPng constructor.
+	 */
+	public function __construct()
+	{
+		$this->foregroundColor = new RgbColor(0, 0, 0);
+		$this->backgroundColor = new RgbColor(255, 255, 255);
+	}
+
+	/**
+	 * @return RgbColor
+	 */
+	public function getForegroundColor()
+	{
+		return $this->foregroundColor;
+	}
+
+	/**
+	 * @param RgbColor $foregroundColor
+	 * @return $this
+	 */
+	public function setForegroundColor(RgbColor $foregroundColor)
+	{
+		$this->foregroundColor = $foregroundColor;
+		return $this;
+	}
+
+	/**
+	 * @return RgbColor
+	 */
+	public function getBackgroundColor()
+	{
+		return $this->backgroundColor;
+	}
+
+	/**
+	 * @param RgbColor $backgroundColor
+	 * @return $this
+	 */
+	public function setBackgroundColor(RgbColor $backgroundColor)
+	{
+		$this->backgroundColor = $backgroundColor;
+		return $this;
+	}
 
 	/**
 	 * @param QrCode $qrCode
@@ -36,8 +92,8 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 		$symbolHeight = ($height + 2 * self::MARGIN) * $blockSize;
 
 		// Define colors
-		$black = new \ImagickPixel('#000000');
-		$white = new \ImagickPixel('#ffffff');
+		$black = new \ImagickPixel($this->foregroundColor->getHex());
+		$white = new \ImagickPixel($this->backgroundColor->getHex());
 
 		// Prepare canvas
 		$canvas = new \Imagick();
@@ -68,7 +124,7 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 		$canvas->clear();
 		$canvas->destroy();
 
-		if($writeSuccess !== true){
+		if ($writeSuccess !== true) {
 			throw new IoException('QR code output file not writable.');
 		}
 	}

@@ -3,6 +3,7 @@
 namespace QrCodeSuite\QrRender;
 
 use QrCodeSuite\QrEncode\QrCode\QrCode;
+use QrCodeSuite\QrRender\Color\CmykColor;
 use QrCodeSuite\QrRender\Exception\IoException;
 
 /**
@@ -14,6 +15,62 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 {
 
 	const MARGIN = 2;
+
+	/**
+	 * @var CmykColor
+	 */
+	private $foregroundColor;
+
+	/**
+	 * @var CmykColor
+	 */
+	private $backgroundColor;
+
+	/**
+	 * QrCodeRendererTiff constructor.
+	 */
+	public function __construct()
+	{
+		$this
+			->setForegroundColor(new CmykColor(0, 0, 0, 0))
+			->setBackgroundColor(new CmykColor(0, 0, 0, 100));
+	}
+
+	/**
+	 * @return CmykColor
+	 */
+	public function getForegroundColor()
+	{
+		return $this->foregroundColor;
+	}
+
+	/**
+	 * @param CmykColor $foregroundColor
+	 * @return $this
+	 */
+	public function setForegroundColor(CmykColor $foregroundColor)
+	{
+		$this->foregroundColor = $foregroundColor;
+		return $this;
+	}
+
+	/**
+	 * @return CmykColor
+	 */
+	public function getBackgroundColor()
+	{
+		return $this->backgroundColor;
+	}
+
+	/**
+	 * @param CmykColor $backgroundColor
+	 * @return $this
+	 */
+	public function setBackgroundColor(CmykColor $backgroundColor)
+	{
+		$this->backgroundColor = $backgroundColor;
+		return $this;
+	}
 
 	/**
 	 * @param QrCode $qrCode
@@ -36,8 +93,8 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 		$symbolHeight = ($height + 2 * self::MARGIN) * $blockSize;
 
 		// Define colors
-		$black = new \ImagickPixel('cmyk(0,0,0,255)');
-		$white = new \ImagickPixel('cmyk(0,0,0,0)');
+		$black = new \ImagickPixel($this->foregroundColor->getImagickNotation());
+		$white = new \ImagickPixel($this->backgroundColor->getImagickNotation());
 
 		// Prepare canvas
 		$canvas = new \Imagick();

@@ -3,6 +3,7 @@
 namespace QrCodeSuite\QrRender;
 
 use QrCodeSuite\QrEncode\QrCode\QrCode;
+use QrCodeSuite\QrRender\Color\CmykColor;
 use QrCodeSuite\QrRender\Exception\IoException;
 use QrCodeSuite\QrRender\PathFinder\PathPoint;
 use QrCodeSuite\QrRender\PathFinder\QrCodePathFinder;
@@ -22,6 +23,29 @@ class QrCodeRendererEps implements Base\QrCodeRendererInterface
 	 * @var int
 	 */
 	private $epsHeight;
+
+	/**
+	 * @var CmykColor
+	 */
+	private $foregroundColor;
+
+	/**
+	 * @return CmykColor
+	 */
+	public function getForegroundColor()
+	{
+		return $this->foregroundColor;
+	}
+
+	/**
+	 * @param CmykColor $foregroundColor
+	 * @return $this
+	 */
+	public function setForegroundColor(CmykColor $foregroundColor)
+	{
+		$this->foregroundColor = $foregroundColor;
+		return $this;
+	}
 
 	/**
 	 * @param QrCode $qrCode
@@ -57,7 +81,7 @@ class QrCodeRendererEps implements Base\QrCodeRendererInterface
 		$epsSource[] = '%%Page: 1 1';
 		$epsSource[] = '/m/moveto load def';
 		$epsSource[] = '/l/lineto load def';
-		$epsSource[] = '0 0 0 1 setcmykcolor';
+		$epsSource[] = $this->foregroundColor->getEpsNotation() . ' setcmykcolor';
 
 		foreach ($paths as $path) {
 			for ($i = 0; $i < $path->countPoints(); $i++) {

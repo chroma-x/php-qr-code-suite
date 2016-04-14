@@ -47,18 +47,29 @@ $qrCodeData = $encoder
 
 ```{php}
 use QrCodeSuite\QrRender;
+use QrCodeSuite\QrRender\Color\RgbColor;
+use QrCodeSuite\QrRender\Color\CmykColor;
 
 // Render the encoded QR code block data as RGB PNG
 $renderer = new QrRender\QrCodeRendererPng();
-$renderer->render($qrCodeData, 'path/to/qr-code.png');
+$renderer
+	->setForegroundColor(new RgbColor(255, 0, 255))
+	->setBackgroundColor(new RgbColor(51, 51, 51))
+	->render($qrCodeData, 'path/to/qr-code.png');
 
 // Render the encoded QR code block data as CMYK TIFF
 $renderer = new QrRender\QrCodeRendererTiff();
-$renderer->render($qrCodeData, 'path/to/qr-code.tif');
+$renderer
+	->setForegroundColor(new CmykColor(0, 100, 0, 0))
+	->setBackgroundColor(new CmykColor(0, 100, 100, 0))
+	->render($qrCodeData, 'path/to/qr-code.tif');
 
 // Render the encoded QR code block data as CMYK vectorized EPS
+// EPS has no background color. It is just the blocks on blank cnavas.
 $renderer = new QrRender\QrCodeRendererEps();
-$renderer->render($qrCodeData, 'path/to/qr-code.eps');
+$renderer
+	->setForegroundColor(new CmykColor(0, 100, 0, 0))
+	->render($qrCodeData, 'path/to/qr-code.eps');
 ```
 
 ---
@@ -70,10 +81,10 @@ Contributing to our projects is always very appreciated.
 
 ## TODOs
 
-- Decorate the code base with some unit tests.
+- ~~Decorate the code base with some unit tests.~~
 - Allow configuration of the QR codes like: 
-  - Foreground color
-  - Background color
+  - ~~Foreground color~~
+  - ~~Background color~~
   - Image size of PNG and TIFF
 
 ## License
