@@ -27,6 +27,21 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 	private $backgroundColor;
 
 	/**
+	 * @var int
+	 */
+	private $approximateSize;
+
+	/**
+	 * @var int
+	 */
+	private $width;
+
+	/**
+	 * @var int
+	 */
+	private $height;
+
+	/**
 	 * QrCodeRendererTiff constructor.
 	 */
 	public function __construct()
@@ -73,6 +88,40 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 	}
 
 	/**
+	 * @return int
+	 */
+	public function getApproximateSize()
+	{
+		return $this->approximateSize;
+	}
+
+	/**
+	 * @param int $approximateSize
+	 * @return $this
+	 */
+	public function setApproximateSize($approximateSize)
+	{
+		$this->approximateSize = $approximateSize;
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getWidth()
+	{
+		return $this->width;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getHeight()
+	{
+		return $this->height;
+	}
+
+	/**
 	 * @param QrCode $qrCode
 	 * @param string $filename
 	 * @throws IoException
@@ -88,9 +137,9 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 		$height = $qrCode->getHeight();
 
 		// Calculate params
-		$blockSize = ceil(1000 / ($width + 2 * self::MARGIN));
-		$symbolWidth = ($width + 2 * self::MARGIN) * $blockSize;
-		$symbolHeight = ($height + 2 * self::MARGIN) * $blockSize;
+		$blockSize = ceil($this->approximateSize / ($width + 2 * self::MARGIN));
+		$this->width = ($width + 2 * self::MARGIN) * $blockSize;
+		$this->height = ($height + 2 * self::MARGIN) * $blockSize;
 
 		// Define colors
 		$black = new \ImagickPixel($this->foregroundColor->getImagickNotation());
@@ -98,7 +147,7 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 
 		// Prepare canvas
 		$canvas = new \Imagick();
-		$canvas->newImage($symbolWidth, $symbolHeight, $white, "tiff");
+		$canvas->newImage($this->width, $this->height, $white, "tiff");
 		$canvas->setImageColorspace(\Imagick::COLORSPACE_CMYK);
 		$canvas->setImageDepth(8);
 

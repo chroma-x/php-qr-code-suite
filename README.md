@@ -51,21 +51,34 @@ use QrCodeSuite\QrRender\Color\RgbColor;
 use QrCodeSuite\QrRender\Color\CmykColor;
 
 // Render the encoded QR code block data as RGB PNG
+// Width and height should measure about 800 pixels
 $renderer = new QrRender\QrCodeRendererPng();
 $renderer
+	->setApproximateSize(800)
 	->setForegroundColor(new RgbColor(255, 0, 255))
 	->setBackgroundColor(new RgbColor(51, 51, 51))
 	->render($qrCodeData, 'path/to/qr-code.png');
 
+// Get the effective width and height of the rendered image
+$imageWidth = $renderer->getWidth();
+$imageHeight = $renderer->getHeight();
+
 // Render the encoded QR code block data as CMYK TIFF
+// Width and height should measure about 800 pixels
 $renderer = new QrRender\QrCodeRendererTiff();
 $renderer
+	->setApproximateSize(800)
 	->setForegroundColor(new CmykColor(0, 100, 0, 0))
 	->setBackgroundColor(new CmykColor(0, 100, 100, 0))
 	->render($qrCodeData, 'path/to/qr-code.tif');
 
+// Get the effective width and height of the rendered image
+$imageWidth = $renderer->getWidth();
+$imageHeight = $renderer->getHeight();
+
 // Render the encoded QR code block data as CMYK vectorized EPS
 // EPS has no background color. It is just the blocks on blank cnavas.
+// EPS also has no approximate size. Scale the vectorized image as you like.
 $renderer = new QrRender\QrCodeRendererEps();
 $renderer
 	->setForegroundColor(new CmykColor(0, 100, 0, 0))
@@ -78,14 +91,6 @@ $renderer
 
 Contributing to our projects is always very appreciated.  
 **But: please follow the contribution guidelines written down in the `CONTRIBUTING.md` document.**
-
-## TODOs
-
-- ~~Decorate the code base with some unit tests.~~
-- Allow configuration of the QR codes like: 
-  - ~~Foreground color~~
-  - ~~Background color~~
-  - Image size of PNG and TIFF
 
 ## License
 

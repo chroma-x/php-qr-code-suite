@@ -27,6 +27,21 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 	private $backgroundColor;
 
 	/**
+	 * @var int
+	 */
+	private $approximateSize;
+
+	/**
+	 * @var int
+	 */
+	private $width;
+
+	/**
+	 * @var int
+	 */
+	private $height;
+
+	/**
 	 * QrCodeRendererPng constructor.
 	 */
 	public function __construct()
@@ -72,6 +87,43 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 	}
 
 	/**
+	 * @return int
+	 */
+	public function getApproximateSize()
+	{
+		return $this->approximateSize;
+	}
+
+	/**
+	 * @param int $approximateSize
+	 * @return $this
+	 */
+	public function setApproximateSize($approximateSize)
+	{
+		if (!is_int($approximateSize) || $approximateSize < 0 || $approximateSize > 5000) {
+			throw new \InvalidArgumentException('Approximate size has to be a positive integer less than 5000');
+		}
+		$this->approximateSize = $approximateSize;
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getWidth()
+	{
+		return $this->width;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getHeight()
+	{
+		return $this->height;
+	}
+
+	/**
 	 * @param QrCode $qrCode
 	 * @param string $filename
 	 * @throws IoException
@@ -87,9 +139,9 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 		$height = $qrCode->getHeight();
 
 		// Calculate params
-		$blockSize = ceil(1000 / ($width + 2 * self::MARGIN));
-		$symbolWidth = ($width + 2 * self::MARGIN) * $blockSize;
-		$symbolHeight = ($height + 2 * self::MARGIN) * $blockSize;
+		$blockSize = round($this->approximateSize / ($width + 2 * self::MARGIN));
+		$this->width = ($width + 2 * self::MARGIN) * $blockSize;
+		$this->height = ($height + 2 * self::MARGIN) * $blockSize;
 
 		// Define colors
 		$black = new \ImagickPixel($this->foregroundColor->getHex());
@@ -97,7 +149,7 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 
 		// Prepare canvas
 		$canvas = new \Imagick();
-		$canvas->newImage($symbolWidth, $symbolHeight, $white, "png");
+		$canvas->newImage($this->width, $this->height, $white, "png");
 		$canvas->setImageColorspace(\Imagick::COLORSPACE_RGB);
 		$canvas->setImageDepth(8);
 

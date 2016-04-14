@@ -20,14 +20,14 @@ class QrCodeRendererEps implements Base\QrCodeRendererInterface
 	const POINTS_PER_BLOCK = 5;
 
 	/**
-	 * @var int
-	 */
-	private $epsHeight;
-
-	/**
 	 * @var CmykColor
 	 */
 	private $foregroundColor;
+
+	/**
+	 * @var int
+	 */
+	private $epsHeight;
 
 	/**
 	 * @return CmykColor

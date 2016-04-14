@@ -26,8 +26,9 @@ class QrCodeRendererTiffTest extends \PHPUnit_Framework_TestCase
 
 		// Render image
 		$qrCodeOutputPath = __DIR__ . '/tmp/qrcode-test.tif';
-		$qrCodeRendererPng = new QrCodeRendererTiff();
-		$qrCodeRendererPng
+		$qrCodeRendererTiff = new QrCodeRendererTiff();
+		$qrCodeRendererTiff
+			->setApproximateSize(800)
 			->setForegroundColor(new CmykColor(60, 80, 0, 0))
 			->setBackgroundColor(new CmykColor(40, 100, 100, 70))
 			->render($qrCode, $qrCodeOutputPath);
@@ -36,12 +37,9 @@ class QrCodeRendererTiffTest extends \PHPUnit_Framework_TestCase
 		$this->assertFileExists($qrCodeOutputPath);
 
 		// Test QR code output file mesaurement
-		$blockSize = ceil(1000 / ($qrCode->getWidth() + 2 * QrCodeRendererPng::MARGIN));
-		$symbolWidth = ($qrCode->getWidth() + 2 * QrCodeRendererPng::MARGIN) * $blockSize;
-		$symbolHeight = ($qrCode->getHeight() + 2 * QrCodeRendererPng::MARGIN) * $blockSize;
 		$imageSize = getimagesize($qrCodeOutputPath);
-		$this->assertEquals($symbolWidth, $imageSize[0]);
-		$this->assertEquals($symbolHeight, $imageSize[1]);
+		$this->assertEquals($qrCodeRendererTiff->getWidth(), $imageSize[0]);
+		$this->assertEquals($qrCodeRendererTiff->getHeight(), $imageSize[1]);
 
 		// Remove test QR code output file
 		unlink($qrCodeOutputPath);
