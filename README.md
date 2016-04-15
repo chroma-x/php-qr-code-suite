@@ -1,4 +1,4 @@
-# QR Code Suite
+# PHP QR Code Suite
 
 [![Build Status](https://travis-ci.org/markenwerk/php-qr-code-suite.svg?branch=master)](https://travis-ci.org/markenwerk/php-qr-code-suite)
 [![Code Climate](https://codeclimate.com/github/markenwerk/php-qr-code-suite/badges/gpa.svg)](https://codeclimate.com/github/markenwerk/php-qr-code-suite)
