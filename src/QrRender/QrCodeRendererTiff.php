@@ -29,7 +29,7 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 	/**
 	 * @var int
 	 */
-	private $approximateSize;
+	private $approximateSize = 1000;
 
 	/**
 	 * @var int
@@ -137,9 +137,9 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 		$height = $qrCode->getHeight();
 
 		// Calculate params
-		$blockSize = ceil($this->approximateSize / ($width + 2 * self::MARGIN));
-		$this->width = ($width + 2 * self::MARGIN) * $blockSize;
-		$this->height = ($height + 2 * self::MARGIN) * $blockSize;
+		$blockSize = round($this->approximateSize / ($width + 2 * self::MARGIN));
+		$this->width = (int)($width + 2 * self::MARGIN) * $blockSize;
+		$this->height = (int)($height + 2 * self::MARGIN) * $blockSize;
 
 		// Define colors
 		$black = new \ImagickPixel($this->foregroundColor->getImagickNotation());
