@@ -1,13 +1,5 @@
 language: php
 
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y qrencode
-  - pear config-set preferred_state beta
-  - printf "\n" | pecl install imagick
-  - echo "extension=imagick.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - php -m
-
 branches:
   only:
     - master
@@ -19,10 +11,27 @@ php:
   - '7.0'
   - hhvm
 
-install:
-  - composer install
-
 matrix:
   allow_failures:
     - php: hhvm
     - php: '5.3'
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y qrencode
+  - pear config-set preferred_state beta
+  - printf "\n" | pecl install imagick
+  - echo "extension=imagick.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - php -m
+
+install:
+  - composer install
+
+before_script:
+  - mkdir -p build/logs
+
+script:
+  - phpunit --coverage-clover build/logs/clover.xml
+
+after_success:
+  - sh -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" && "$TRAVIS_PHP_VERSION" != "5.3" ]; then CODECLIMATE_REPO_TOKEN=fa42f567b7666793956a507e50d3a8b9bb833a9a1183cb543bedd2ea5cafb8be ./vendor/bin/test-reporter; fi;'
