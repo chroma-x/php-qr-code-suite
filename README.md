@@ -91,8 +91,8 @@ $renderer
 ## Contribution
 
 Contributing to our projects is always very appreciated.  
-**But: please follow the contribution guidelines written down in the `CONTRIBUTING.md` document.**
+**But: please follow the contribution guidelines written down in the [CONTRIBUTING.md](https://github.com/markenwerk/php-qr-code-suite/blob/master/CONTRIBUTING.md) document.**
 
 ## License
 
-QR Code Suite is under the MIT license.
+PHP QR Code Suite is under the MIT license.
