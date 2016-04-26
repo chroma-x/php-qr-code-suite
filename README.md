@@ -112,7 +112,7 @@ try {
 
 ## Exception handling
 
-PHP Google Geocoder provides different exceptions provided by the PHP Common Exceptions project for proper handling.  
+PHP QR Code Suite provides different exceptions provided by the PHP Common Exceptions project for proper handling.  
 You can find more information about [PHP Common Exceptions at Github](https://github.com/markenwerk/php-common-exceptions).
 
 ---
