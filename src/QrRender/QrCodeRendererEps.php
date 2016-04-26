@@ -2,9 +2,9 @@
 
 namespace QrCodeSuite\QrRender;
 
+use CommonException\IoException;
 use QrCodeSuite\QrEncode\QrCode\QrCode;
 use QrCodeSuite\QrRender\Color\CmykColor;
-use QrCodeSuite\QrRender\Exception\IoException;
 use QrCodeSuite\QrRender\PathFinder\PathPoint;
 use QrCodeSuite\QrRender\PathFinder\QrCodePathFinder;
 
@@ -50,12 +50,12 @@ class QrCodeRendererEps implements Base\QrCodeRendererInterface
 	/**
 	 * @param QrCode $qrCode
 	 * @param string $filename
-	 * @throws IoException
+	 * @throws IoException\FileWritableException
 	 */
 	public function render(QrCode $qrCode, $filename)
 	{
 		if (!is_dir(dirname($filename)) || !is_writable(dirname($filename))) {
-			throw new IoException('QR code path not writable.');
+			throw new IoException\FileWritableException('QR code path not writable.');
 		}
 
 		$pathFinder = new QrCodePathFinder();
@@ -99,7 +99,7 @@ class QrCodeRendererEps implements Base\QrCodeRendererInterface
 
 		$bytes = @file_put_contents($filename, implode("\n", $epsSource));
 		if ($bytes === false) {
-			throw new IoException('QR code output file not writable.');
+			throw new IoException\FileWritableException('QR code output file not writable.');
 		}
 	}
 

@@ -2,9 +2,9 @@
 
 namespace QrCodeSuite\QrRender;
 
+use CommonException\IoException;
 use QrCodeSuite\QrEncode\QrCode\QrCode;
 use QrCodeSuite\QrRender\Color\CmykColor;
-use QrCodeSuite\QrRender\Exception\IoException;
 
 /**
  * Class QrCodeRendererTiff
@@ -124,12 +124,12 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 	/**
 	 * @param QrCode $qrCode
 	 * @param string $filename
-	 * @throws IoException
+	 * @throws IoException\FileWritableException
 	 */
 	public function render(QrCode $qrCode, $filename)
 	{
 		if (!is_dir(dirname($filename)) || !is_writable(dirname($filename))) {
-			throw new IoException('QR code path not writable.');
+			throw new IoException\FileWritableException('QR code path not writable.');
 		}
 
 		// Get basic info
@@ -180,7 +180,7 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 		$block->destroy();
 
 		if ($writeSuccess !== true) {
-			throw new IoException('QR code output file not writable');
+			throw new IoException\FileWritableException('QR code output file not writable');
 		}
 	}
 

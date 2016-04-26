@@ -2,6 +2,7 @@
 
 namespace QrCodeSuite\QrEncode;
 
+use CommonException\IoException;
 use QrCodeSuite\QrEncode\Exception\QrEncoderException;
 use QrCodeSuite\QrEncode\QrCode\QrCode;
 use QrCodeSuite\QrEncode\QrCode\QrCodePointRow;
@@ -79,6 +80,7 @@ class QrEncoder
 	/**
 	 * @param string $contents
 	 * @return QrCode
+	 * @throws IoException\FolderWritableException
 	 * @throws QrEncoderException
 	 */
 	public function encodeQrCode($contents)
@@ -86,8 +88,15 @@ class QrEncoder
 		$chars = str_split($contents);
 		foreach ($chars as $char) {
 			if (0 == ord($char)) {
-				throw new QrEncoderException('Encoding null character failed');
+				throw new \InvalidArgumentException('QR code contents contains a not allowed null character.');
 			}
+		}
+		// Validate temp dir
+		if (!is_dir($this->tempDir)) {
+			throw new IoException\FolderWritableException('Temp dir not exists');
+		}
+		if (!is_writable($this->tempDir)) {
+			throw new IoException\FolderWritableException('Temp dir not writable');
 		}
 		// Build temp name
 		$pngPath = rtrim($this->tempDir, '/') . '/qr_' . time() . rand(1000, 9999) . '.png';
@@ -114,12 +123,13 @@ class QrEncoder
 			$err = stream_get_contents($pipes[2]);
 			fclose($pipes[2]);
 			proc_close($process);
-			if ($this->startsWith($err, "Failed to encode the input data")) {
-				throw new QrEncoderException('Too much content');
+			if ($this->startsWith($err, 'Failed to encode the input data')) {
+				throw new \InvalidArgumentException('Too much content');
 			}
 		} else {
 			throw new QrEncoderException('QR encoder internal error');
 		}
+
 		$image = @imagecreatefrompng($pngPath);
 		if ($image === false) {
 			throw new QrEncoderException('GD lib internal error');
