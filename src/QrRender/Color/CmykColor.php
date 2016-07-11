@@ -1,11 +1,11 @@
 <?php
 
-namespace QrCodeSuite\QrRender\Color;
+namespace Markenwerk\QrCodeSuite\QrRender\Color;
 
 /**
  * Class CmykColor
  *
- * @package QrCodeSuite\QrRender\Color
+ * @package Markenwerk\QrCodeSuite\QrRender\Color
  */
 class CmykColor
 {
@@ -150,6 +150,7 @@ class CmykColor
 
 	/**
 	 * @param int $int
+	 * @return string
 	 */
 	private function colorChannelValueToOct($int)
 	{
@@ -158,6 +159,7 @@ class CmykColor
 
 	/**
 	 * @param int $int
+	 * @return string
 	 */
 	private function colorChannelValueToFloat($int)
 	{

@@ -1,11 +1,11 @@
 <?php
 
-namespace QrCodeSuite\QrRender\PathFinder;
+namespace Markenwerk\QrCodeSuite\QrRender\PathFinder;
 
 /**
  * Class Path
  *
- * @package QrCodeSuite\QrRender\PathFinder
+ * @package Markenwerk\QrCodeSuite\QrRender\PathFinder
  */
 class Path
 {

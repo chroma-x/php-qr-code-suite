@@ -1,11 +1,11 @@
 <?php
 
-namespace QrCodeSuite\QrRender\Color;
+namespace Markenwerk\QrCodeSuite\QrRender\Color;
 
 /**
  * Class RgbColor
  *
- * @package QrCodeSuite\QrRender\Color
+ * @package Markenwerk\QrCodeSuite\QrRender\Color
  */
 class RgbColor
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace QrCodeSuite\QrEncode;
+namespace Markenwerk\QrCodeSuite\QrEncode;
 
 /**
  * Class QrEncoderTest
  *
- * @package QrCodeSuite\QrEncode
+ * @package Markenwerk\QrCodeSuite\QrEncode
  */
 class QrEncoderTest extends \PHPUnit_Framework_TestCase
 {

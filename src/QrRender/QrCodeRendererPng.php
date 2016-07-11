@@ -1,15 +1,15 @@
 <?php
 
-namespace QrCodeSuite\QrRender;
+namespace Markenwerk\QrCodeSuite\QrRender;
 
-use CommonException\IoException;
-use QrCodeSuite\QrEncode\QrCode\QrCode;
-use QrCodeSuite\QrRender\Color\RgbColor;
+use Markenwerk\CommonException\IoException;
+use Markenwerk\QrCodeSuite\QrEncode\QrCode\QrCode;
+use Markenwerk\QrCodeSuite\QrRender\Color\RgbColor;
 
 /**
  * Class QrCodeRendererPng
  *
- * @package QrCodeSuite\QrRender
+ * @package Markenwerk\QrCodeSuite\QrRender
  */
 class QrCodeRendererPng implements Base\QrCodeRendererInterface
 {

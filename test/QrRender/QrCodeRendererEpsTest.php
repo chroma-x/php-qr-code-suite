@@ -1,14 +1,14 @@
 <?php
 
-namespace QrCodeSuite\QrRender;
+namespace Markenwerk\QrCodeSuite\QrRender;
 
-use QrCodeSuite\QrEncode\QrEncoder;
-use QrCodeSuite\QrRender\Color\CmykColor;
+use Markenwerk\QrCodeSuite\QrEncode\QrEncoder;
+use Markenwerk\QrCodeSuite\QrRender\Color\CmykColor;
 
 /**
  * Class QrCodeRendererEpsTest
  *
- * @package QrCodeSuite\QrRender
+ * @package Markenwerk\QrCodeSuite\QrRender
  */
 class QrCodeRendererEpsTest extends \PHPUnit_Framework_TestCase
 {

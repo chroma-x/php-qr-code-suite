@@ -1,13 +1,13 @@
 <?php
 
-namespace QrCodeSuite\QrRender\Base;
+namespace Markenwerk\QrCodeSuite\QrRender\Base;
 
-use QrCodeSuite\QrEncode\QrCode\QrCode;
+use Markenwerk\QrCodeSuite\QrEncode\QrCode\QrCode;
 
 /**
  * Interface QrCodeRendererInterface
  *
- * @package QrCodeSuite\QrRender\Base
+ * @package Markenwerk\QrCodeSuite\QrRender\Base
  */
 interface QrCodeRendererInterface
 {

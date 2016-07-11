@@ -1,17 +1,17 @@
 <?php
 
-namespace QrCodeSuite\QrEncode;
+namespace Markenwerk\QrCodeSuite\QrEncode;
 
-use CommonException\IoException;
-use QrCodeSuite\QrEncode\Exception\QrEncoderException;
-use QrCodeSuite\QrEncode\QrCode\QrCode;
-use QrCodeSuite\QrEncode\QrCode\QrCodePointRow;
-use QrCodeSuite\QrEncode\QrCode\QrCodePoint;
+use Markenwerk\CommonException\IoException;
+use Markenwerk\QrCodeSuite\QrEncode\Exception\QrEncoderException;
+use Markenwerk\QrCodeSuite\QrEncode\QrCode\QrCode;
+use Markenwerk\QrCodeSuite\QrEncode\QrCode\QrCodePointRow;
+use Markenwerk\QrCodeSuite\QrEncode\QrCode\QrCodePoint;
 
 /**
  * Class QrEncoder
  *
- * @package QrCodeSuite\QrEncode
+ * @package Markenwerk\QrCodeSuite\QrEncode
  */
 class QrEncoder
 {

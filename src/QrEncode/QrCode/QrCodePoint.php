@@ -1,11 +1,11 @@
 <?php
 
-namespace QrCodeSuite\QrEncode\QrCode;
+namespace Markenwerk\QrCodeSuite\QrEncode\QrCode;
 
 /**
  * Class QrCodePoint
  *
- * @package QrCodeSuite\QrEncode
+ * @package Markenwerk\QrCodeSuite\QrEncode
  */
 class QrCodePoint
 {

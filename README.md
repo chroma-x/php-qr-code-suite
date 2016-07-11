@@ -19,7 +19,7 @@ To use the QR Code Suite [`qrencode`](https://wiki.ubuntuusers.de/qrencode/) and
 ```{json}
 {
    	"require": {
-        "markenwerk/qr-code-suite": "~3.0"
+        "markenwerk/qr-code-suite": "~4.0"
     }
 }
 ```
@@ -35,8 +35,8 @@ require_once('path/to/vendor/autoload.php');
 ### Encoding data as QR code block data
 
 ```{php}
-use CommonException\IoException;
-use QrCodeSuite\QrEncode;
+use Markenwerk\CommonException\IoException;
+use Markenwerk\QrCodeSuite\QrEncode;
 
 // Encode the data as QR code block data
 try {
@@ -57,10 +57,10 @@ try {
 ### Render encoded QR code block data as image
 
 ```{php}
-use CommonException\IoException;
-use QrCodeSuite\QrRender;
-use QrCodeSuite\QrRender\Color\RgbColor;
-use QrCodeSuite\QrRender\Color\CmykColor;
+use Markenwerk\CommonException\IoException;
+use Markenwerk\QrCodeSuite\QrRender;
+use Markenwerk\QrCodeSuite\QrRender\Color\RgbColor;
+use Markenwerk\QrCodeSuite\QrRender\Color\CmykColor;
 
 // Render the encoded QR code block data as RGB PNG
 // Width and height should measure about 800 pixels

@@ -1,17 +1,17 @@
 <?php
 
-namespace QrCodeSuite\QrRender;
+namespace Markenwerk\QrCodeSuite\QrRender;
 
-use CommonException\IoException;
-use QrCodeSuite\QrEncode\QrCode\QrCode;
-use QrCodeSuite\QrRender\Color\CmykColor;
-use QrCodeSuite\QrRender\PathFinder\PathPoint;
-use QrCodeSuite\QrRender\PathFinder\QrCodePathFinder;
+use Markenwerk\CommonException\IoException;
+use Markenwerk\QrCodeSuite\QrEncode\QrCode\QrCode;
+use Markenwerk\QrCodeSuite\QrRender\Color\CmykColor;
+use Markenwerk\QrCodeSuite\QrRender\PathFinder\PathPoint;
+use Markenwerk\QrCodeSuite\QrRender\PathFinder\QrCodePathFinder;
 
 /**
  * Class QrCodeRendererEps
  *
- * @package QrCodeSuite\QrRender
+ * @package Markenwerk\QrCodeSuite\QrRender
  */
 class QrCodeRendererEps implements Base\QrCodeRendererInterface
 {

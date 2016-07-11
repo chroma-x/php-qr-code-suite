@@ -1,13 +1,13 @@
 <?php
 
-namespace QrCodeSuite\QrRender\PathFinder;
+namespace Markenwerk\QrCodeSuite\QrRender\PathFinder;
 
-use QrCodeSuite\QrEncode\QrCode\QrCode;
+use Markenwerk\QrCodeSuite\QrEncode\QrCode\QrCode;
 
 /**
  * Class QrCodePathFinder
  *
- * @package QrCodeSuite\QrRender\PathFinder
+ * @package Markenwerk\QrCodeSuite\QrRender\PathFinder
  */
 class QrCodePathFinder
 {

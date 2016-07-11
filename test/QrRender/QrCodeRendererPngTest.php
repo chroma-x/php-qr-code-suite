@@ -1,14 +1,14 @@
 <?php
 
-namespace QrCodeSuite\QrRender;
+namespace Markenwerk\QrCodeSuite\QrRender;
 
-use QrCodeSuite\QrEncode\QrEncoder;
-use QrCodeSuite\QrRender\Color\RgbColor;
+use Markenwerk\QrCodeSuite\QrEncode\QrEncoder;
+use Markenwerk\QrCodeSuite\QrRender\Color\RgbColor;
 
 /**
  * Class QrCodeRendererPngTest
  *
- * @package QrCodeSuite\QrRender
+ * @package Markenwerk\QrCodeSuite\QrRender
  */
 class QrCodeRendererPngTest extends \PHPUnit_Framework_TestCase
 {

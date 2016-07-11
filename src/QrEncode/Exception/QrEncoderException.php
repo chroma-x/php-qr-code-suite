@@ -1,11 +1,11 @@
 <?php
 
-namespace QrCodeSuite\QrEncode\Exception;
+namespace Markenwerk\QrCodeSuite\QrEncode\Exception;
 
 /**
  * Class QrEncoderException
  *
- * @package QrCodeSuite\QrEncode\Exception
+ * @package Markenwerk\QrCodeSuite\QrEncode\Exception
  */
 class QrEncoderException extends \Exception
 {
