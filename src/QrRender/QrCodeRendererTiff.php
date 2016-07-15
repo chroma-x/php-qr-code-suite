@@ -11,10 +11,8 @@ use Markenwerk\QrCodeSuite\QrRender\Color\CmykColor;
  *
  * @package Markenwerk\QrCodeSuite\QrRender
  */
-class QrCodeRendererTiff implements Base\QrCodeRendererInterface
+class QrCodeRendererTiff extends AbstractPixelRenderer implements Base\QrCodeRendererInterface
 {
-
-	const MARGIN = 2;
 
 	/**
 	 * @var CmykColor
@@ -25,21 +23,6 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 	 * @var CmykColor
 	 */
 	private $backgroundColor;
-
-	/**
-	 * @var int
-	 */
-	private $approximateSize = 1000;
-
-	/**
-	 * @var int
-	 */
-	private $width;
-
-	/**
-	 * @var int
-	 */
-	private $height;
 
 	/**
 	 * QrCodeRendererTiff constructor.
@@ -88,40 +71,6 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 	}
 
 	/**
-	 * @return int
-	 */
-	public function getApproximateSize()
-	{
-		return $this->approximateSize;
-	}
-
-	/**
-	 * @param int $approximateSize
-	 * @return $this
-	 */
-	public function setApproximateSize($approximateSize)
-	{
-		$this->approximateSize = $approximateSize;
-		return $this;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getWidth()
-	{
-		return $this->width;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getHeight()
-	{
-		return $this->height;
-	}
-
-	/**
 	 * @param QrCode $qrCode
 	 * @param string $filename
 	 * @throws IoException\FileWritableException
@@ -137,9 +86,9 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 		$height = $qrCode->getHeight();
 
 		// Calculate params
-		$blockSize = round($this->approximateSize / ($width + 2 * self::MARGIN));
-		$this->width = (int)($width + 2 * self::MARGIN) * $blockSize;
-		$this->height = (int)($height + 2 * self::MARGIN) * $blockSize;
+		$blockSize = round($this->getApproximateSize() / ($width + 2 * self::MARGIN));
+		$this->setWidth((int)($width + 2 * self::MARGIN) * $blockSize);
+		$this->setHeight((int)($height + 2 * self::MARGIN) * $blockSize);
 
 		// Define colors
 		$black = new \ImagickPixel($this->foregroundColor->getImagickNotation());
@@ -147,7 +96,7 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 
 		// Prepare canvas
 		$canvas = new \Imagick();
-		$canvas->newImage($this->width, $this->height, $white, "tiff");
+		$canvas->newImage($this->getWidth(), $this->getHeight(), $white, "tiff");
 		$canvas->setImageColorspace(\Imagick::COLORSPACE_CMYK);
 		$canvas->setImageDepth(8);
 
@@ -173,7 +122,7 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 		}
 
 		// Write out the image
-		$writeSuccess = @$canvas->writeImage($filename);
+		$writeSuccess = $canvas->writeImage($filename);
 		$canvas->clear();
 		$canvas->destroy();
 		$block->clear();

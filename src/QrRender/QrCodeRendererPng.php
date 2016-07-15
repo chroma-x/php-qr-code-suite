@@ -11,10 +11,8 @@ use Markenwerk\QrCodeSuite\QrRender\Color\RgbColor;
  *
  * @package Markenwerk\QrCodeSuite\QrRender
  */
-class QrCodeRendererPng implements Base\QrCodeRendererInterface
+class QrCodeRendererPng extends AbstractPixelRenderer implements Base\QrCodeRendererInterface
 {
-
-	const MARGIN = 2;
 
 	/**
 	 * @var RgbColor
@@ -25,21 +23,6 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 	 * @var RgbColor
 	 */
 	private $backgroundColor;
-
-	/**
-	 * @var int
-	 */
-	private $approximateSize = 1000;
-
-	/**
-	 * @var int
-	 */
-	private $width;
-
-	/**
-	 * @var int
-	 */
-	private $height;
 
 	/**
 	 * QrCodeRendererPng constructor.
@@ -87,43 +70,6 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 	}
 
 	/**
-	 * @return int
-	 */
-	public function getApproximateSize()
-	{
-		return $this->approximateSize;
-	}
-
-	/**
-	 * @param int $approximateSize
-	 * @return $this
-	 */
-	public function setApproximateSize($approximateSize)
-	{
-		if (!is_int($approximateSize) || $approximateSize < 0 || $approximateSize > 5000) {
-			throw new \InvalidArgumentException('Approximate size has to be a positive integer less than 5000');
-		}
-		$this->approximateSize = $approximateSize;
-		return $this;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getWidth()
-	{
-		return $this->width;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getHeight()
-	{
-		return $this->height;
-	}
-
-	/**
 	 * @param QrCode $qrCode
 	 * @param string $filename
 	 * @throws IoException\FileWritableException
@@ -139,9 +85,9 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 		$height = $qrCode->getHeight();
 
 		// Calculate params
-		$blockSize = round($this->approximateSize / ($width + 2 * self::MARGIN));
-		$this->width = (int)($width + 2 * self::MARGIN) * $blockSize;
-		$this->height = (int)($height + 2 * self::MARGIN) * $blockSize;
+		$blockSize = round($this->getApproximateSize() / ($width + 2 * self::MARGIN));
+		$this->setWidth((int)($width + 2 * self::MARGIN) * $blockSize);
+		$this->setHeight((int)($height + 2 * self::MARGIN) * $blockSize);
 
 		// Define colors
 		$black = new \ImagickPixel($this->foregroundColor->getHex());
@@ -149,7 +95,7 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 
 		// Prepare canvas
 		$canvas = new \Imagick();
-		$canvas->newImage($this->width, $this->height, $white, "png");
+		$canvas->newImage($this->getWidth(), $this->getHeight(), $white, "png");
 		$canvas->setImageColorspace(\Imagick::COLORSPACE_RGB);
 		$canvas->setImageDepth(8);
 
@@ -172,7 +118,7 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 		$canvas->drawImage($draw);
 
 		// Write out the image
-		$writeSuccess = @$canvas->writeImage($filename);
+		$writeSuccess = $canvas->writeImage($filename);
 		$canvas->clear();
 		$canvas->destroy();
 

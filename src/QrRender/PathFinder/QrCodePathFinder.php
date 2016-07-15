@@ -51,9 +51,11 @@ class QrCodePathFinder
 
 	private function findPaths()
 	{
-		for ($y = 1; $y <= $this->qrCode->getHeight(); $y++) {
+		$qrCodeHeight = $this->qrCode->getHeight();
+		$qrCodeWidth = $this->qrCode->getWidth();
+		for ($y = 1; $y <= $qrCodeHeight; $y++) {
 			$qrCodePointRow = $this->qrCode->getRow($y);
-			for ($x = 1; $x <= $this->qrCode->getWidth(); $x++) {
+			for ($x = 1; $x <= $qrCodeWidth; $x++) {
 				if (!isset($this->visited[$y][$x])) {
 					$qrCodePoint = $qrCodePointRow->getPoint($x);
 					if ($this->isCorner($x, $y)) {
@@ -86,7 +88,7 @@ class QrCodePathFinder
 	 * @param int $startXPosition
 	 * @param int $startYPosition
 	 * @param bool $active
-	 * @return array
+	 * @return Path
 	 */
 	private function traceComposite($startXPosition, $startYPosition, $active)
 	{

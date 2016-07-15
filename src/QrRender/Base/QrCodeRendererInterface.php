@@ -12,6 +12,8 @@ use Markenwerk\QrCodeSuite\QrEncode\QrCode\QrCode;
 interface QrCodeRendererInterface
 {
 
+	const MARGIN = 2;
+
 	/**
 	 * @param QrCode $qrCode
 	 * @param $filename

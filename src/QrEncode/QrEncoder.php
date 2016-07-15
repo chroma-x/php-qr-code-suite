@@ -130,7 +130,7 @@ class QrEncoder
 			throw new QrEncoderException('QR encoder internal error');
 		}
 
-		$image = @imagecreatefrompng($pngPath);
+		$image = imagecreatefrompng($pngPath);
 		if ($image === false) {
 			throw new QrEncoderException('GD lib internal error');
 		}

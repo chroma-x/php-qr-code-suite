@@ -16,7 +16,6 @@ use Markenwerk\QrCodeSuite\QrRender\PathFinder\QrCodePathFinder;
 class QrCodeRendererEps implements Base\QrCodeRendererInterface
 {
 
-	const MARGIN = 2;
 	const POINTS_PER_BLOCK = 5;
 
 	/**
@@ -84,7 +83,8 @@ class QrCodeRendererEps implements Base\QrCodeRendererInterface
 		$epsSource[] = $this->foregroundColor->getEpsNotation() . ' setcmykcolor';
 
 		foreach ($paths as $path) {
-			for ($i = 0; $i < $path->countPoints(); $i++) {
+			$pointCount = $path->countPoints();
+			for ($i = 0; $i < $pointCount; $i++) {
 				if ($i == 0) {
 					$epsSource[] = $this->convertPoint($path->getFirstPoint()) . ' m';
 				} else {
