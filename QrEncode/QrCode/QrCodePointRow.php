@@ -1,11 +1,11 @@
 <?php
 
-namespace QrCodeSuite\QrEncode\QrCode;
+namespace ChromaX\QrCodeSuite\QrEncode\QrCode;
 
 /**
  * Class QrCodePointRow
  *
- * @package QrCodeSuite\QrEncode
+ * @package ChromaX\QrCodeSuite\QrEncode
  */
 class QrCodePointRow
 {

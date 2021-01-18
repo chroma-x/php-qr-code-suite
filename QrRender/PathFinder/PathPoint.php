@@ -1,11 +1,11 @@
 <?php
 
-namespace QrCodeSuite\QrRender\PathFinder;
+namespace ChromaX\QrCodeSuite\QrRender\PathFinder;
 
 /**
  * Class PathPoint
  *
- * @package QrCodeSuite\QrRender\PathFinder
+ * @package ChromaX\QrCodeSuite\QrRender\PathFinder
  */
 class PathPoint
 {

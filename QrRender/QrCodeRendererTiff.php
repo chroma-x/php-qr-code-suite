@@ -1,14 +1,16 @@
 <?php
 
-namespace QrCodeSuite\QrRender;
+namespace ChromaX\QrCodeSuite\QrRender;
 
-use QrCodeSuite\QrEncode\QrCode\QrCode;
-use QrCodeSuite\QrRender\Exception\IoException;
+use ChromaX\QrCodeSuite\QrEncode\QrCode\QrCode;
+use ChromaX\QrCodeSuite\QrRender\Exception\IoException;
+use Imagick;
+use ImagickPixel;
 
 /**
  * Class QrCodeRendererTiff
  *
- * @package QrCodeSuite\QrRender
+ * @package ChromaX\QrCodeSuite\QrRender
  */
 class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 {
@@ -36,19 +38,19 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 		$symbolHeight = ($height + 2 * self::MARGIN) * $blockSize;
 
 		// Define colors
-		$black = new \ImagickPixel('cmyk(0,0,0,255)');
-		$white = new \ImagickPixel('cmyk(0,0,0,0)');
+		$black = new ImagickPixel('cmyk(0,0,0,255)');
+		$white = new ImagickPixel('cmyk(0,0,0,0)');
 
 		// Prepare canvas
-		$canvas = new \Imagick();
+		$canvas = new Imagick();
 		$canvas->newImage($symbolWidth, $symbolHeight, $white, "tiff");
-		$canvas->setImageColorspace(\Imagick::COLORSPACE_CMYK);
+		$canvas->setImageColorspace(Imagick::COLORSPACE_CMYK);
 		$canvas->setImageDepth(8);
 
 		// Prepare block
-		$block = new \Imagick();
+		$block = new Imagick();
 		$block->newImage($blockSize, $blockSize, $black, "tiff");
-		$block->setImageColorspace(\Imagick::COLORSPACE_CMYK);
+		$block->setImageColorspace(Imagick::COLORSPACE_CMYK);
 		$block->setImageDepth(8);
 
 		// Draw blocks
@@ -56,12 +58,14 @@ class QrCodeRendererTiff implements Base\QrCodeRendererInterface
 		for ($h = 1; $h <= $height; $h++) {
 			$left = self::MARGIN * $blockSize;
 			$qrCodePointRow = $qrCode->getRow($h);
-			for ($w = 1; $w <= $width; $w++) {
-				$qrCodePpoint = $qrCodePointRow->getPoint($w);
-				if ($qrCodePpoint->isActive()) {
-					$canvas->compositeImage($block, \Imagick::COMPOSITE_ATOP, $left, $top);
+			if ($qrCodePointRow !== null) {
+				for ($w = 1; $w <= $width; $w++) {
+					$qrCodePpoint = $qrCodePointRow->getPoint($w);
+					if ($qrCodePpoint !== null && $qrCodePpoint->isActive()) {
+						$canvas->compositeImage($block, Imagick::COMPOSITE_ATOP, $left, $top);
+					}
+					$left += $blockSize;
 				}
-				$left += $blockSize;
 			}
 			$top += $blockSize;
 		}

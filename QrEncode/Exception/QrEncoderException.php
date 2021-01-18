@@ -1,13 +1,15 @@
 <?php
 
-namespace QrCodeSuite\QrEncode\Exception;
+namespace ChromaX\QrCodeSuite\QrEncode\Exception;
+
+use Exception;
 
 /**
  * Class QrEncoderException
  *
- * @package QrCodeSuite\QrEncode\Exception
+ * @package ChromaX\QrCodeSuite\QrEncode\Exception
  */
-class QrEncoderException extends \Exception
+class QrEncoderException extends Exception
 {
 
 }

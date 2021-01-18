@@ -1,13 +1,13 @@
 <?php
 
-namespace QrCodeSuite\QrRender\Base;
+namespace ChromaX\QrCodeSuite\QrRender\Base;
 
-use QrCodeSuite\QrEncode\QrCode\QrCode;
+use ChromaX\QrCodeSuite\QrEncode\QrCode\QrCode;
 
 /**
  * Interface QrCodeRendererInterface
  *
- * @package QrCodeSuite\QrRender\Base
+ * @package ChromaX\QrCodeSuite\QrRender\Base
  */
 interface QrCodeRendererInterface
 {

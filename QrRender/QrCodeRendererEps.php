@@ -1,16 +1,16 @@
 <?php
 
-namespace QrCodeSuite\QrRender;
+namespace ChromaX\QrCodeSuite\QrRender;
 
-use QrCodeSuite\QrEncode\QrCode\QrCode;
-use QrCodeSuite\QrRender\Exception\IoException;
-use QrCodeSuite\QrRender\PathFinder\PathPoint;
-use QrCodeSuite\QrRender\PathFinder\QrCodePathFinder;
+use ChromaX\QrCodeSuite\QrEncode\QrCode\QrCode;
+use ChromaX\QrCodeSuite\QrRender\Exception\IoException;
+use ChromaX\QrCodeSuite\QrRender\PathFinder\PathPoint;
+use ChromaX\QrCodeSuite\QrRender\PathFinder\QrCodePathFinder;
 
 /**
  * Class QrCodeRendererEps
  *
- * @package QrCodeSuite\QrRender
+ * @package ChromaX\QrCodeSuite\QrRender
  */
 class QrCodeRendererEps implements Base\QrCodeRendererInterface
 {
@@ -48,7 +48,7 @@ class QrCodeRendererEps implements Base\QrCodeRendererInterface
 		$epsSource[] = '%!PS-Adobe-2.0 EPSF-2.0';
 		$epsSource[] = '%%BoundingBox: 0 0 ' . ceil($epsWidth) . ' ' . ceil($epsHeight) . '';
 		$epsSource[] = '%%HiResBoundingBox: 0 0 ' . $epsWidth . ' ' . $epsHeight . '';
-		$epsSource[] = '%%Creator: tk | markenwerk';
+		$epsSource[] = '%%Creator: tk | chroma-x';
 		$epsSource[] = '%%CreationDate: ' . time();
 		$epsSource[] = '%%DocumentData: Clean7Bit';
 		$epsSource[] = '%%LanguageLevel: 2';
@@ -61,7 +61,7 @@ class QrCodeRendererEps implements Base\QrCodeRendererInterface
 
 		foreach ($paths as $path) {
 			for ($i = 0; $i < $path->countPoints(); $i++) {
-				if ($i == 0) {
+				if ($i === 0) {
 					$epsSource[] = $this->convertPoint($path->getFirstPoint()) . ' m';
 				} else {
 					$epsSource[] = $this->convertPoint($path->getPoint($i)) . ' l';

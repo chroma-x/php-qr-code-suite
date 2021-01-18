@@ -1,9 +1,9 @@
 # QR Code Suite
 
-[![Code Climate](https://codeclimate.com/github/markenwerk/php-qr-code-suite/badges/gpa.svg)](https://codeclimate.com/github/markenwerk/php-qr-code-suite)
-[![Latest Stable Version](https://poser.pugx.org/markenwerk/qr-code-suite/v/stable)](https://packagist.org/packages/markenwerk/qr-code-suite)
-[![Total Downloads](https://poser.pugx.org/markenwerk/qr-code-suite/downloads)](https://packagist.org/packages/markenwerk/qr-code-suite)
-[![License](https://poser.pugx.org/markenwerk/qr-code-suite/license)](https://packagist.org/packages/markenwerk/qr-code-suite)
+[![Code Climate](https://codeclimate.com/github/chroma-x/php-qr-code-suite/badges/gpa.svg)](https://codeclimate.com/github/chroma-x/php-qr-code-suite)
+[![Latest Stable Version](https://poser.pugx.org/chroma-x/qr-code-suite/v/stable)](https://packagist.org/packages/chroma-x/qr-code-suite)
+[![Total Downloads](https://poser.pugx.org/chroma-x/qr-code-suite/downloads)](https://packagist.org/packages/chroma-x/qr-code-suite)
+[![License](https://poser.pugx.org/chroma-x/qr-code-suite/license)](https://packagist.org/packages/chroma-x/qr-code-suite)
 
 A collection of classes to QR enccode strings and render them as PNG, TIFF and vectorized EPS.
 
@@ -16,7 +16,7 @@ To use the QR Code Suite [`qrencode`](https://wiki.ubuntuusers.de/qrencode/) and
 ```{json}
 {
    	"require": {
-        "markenwerk/qr-code-suite": "~2.0"
+        "chroma-x/qr-code-suite": "~2.0"
     }
 }
 ```
@@ -39,7 +39,7 @@ $encoder = new QrEncoder();
 $qrCodeData = $encoder
 	->setLevel(QrEncoder::QR_CODE_LEVEL_LOW)
 	->setTempDir('path/to/writable/directory')
-	->encodeQrCode('https://github.com/markenwerk/php-qr-code-suite');
+	->encodeQrCode('https://github.com/chroma-x/php-qr-code-suite');
 ```
 
 ### Render encoded QR code block data as image

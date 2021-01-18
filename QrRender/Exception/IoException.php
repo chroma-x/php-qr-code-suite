@@ -1,13 +1,15 @@
 <?php
 
-namespace QrCodeSuite\QrRender\Exception;
+namespace ChromaX\QrCodeSuite\QrRender\Exception;
+
+use Exception;
 
 /**
  * Class IoException
  *
- * @package QrCodeSuite\QrRender\Exception
+ * @package ChromaX\QrCodeSuite\QrRender\Exception
  */
-class IoException extends \Exception
+class IoException extends Exception
 {
 
 }

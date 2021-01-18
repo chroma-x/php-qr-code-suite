@@ -1,14 +1,17 @@
 <?php
 
-namespace QrCodeSuite\QrRender;
+namespace ChromaX\QrCodeSuite\QrRender;
 
-use QrCodeSuite\QrEncode\QrCode\QrCode;
-use QrCodeSuite\QrRender\Exception\IoException;
+use ChromaX\QrCodeSuite\QrEncode\QrCode\QrCode;
+use ChromaX\QrCodeSuite\QrRender\Exception\IoException;
+use Imagick;
+use ImagickDraw;
+use ImagickPixel;
 
 /**
  * Class QrCodeRendererPng
  *
- * @package QrCodeSuite\QrRender
+ * @package ChromaX\QrCodeSuite\QrRender
  */
 class QrCodeRendererPng implements Base\QrCodeRendererInterface
 {
@@ -36,28 +39,30 @@ class QrCodeRendererPng implements Base\QrCodeRendererInterface
 		$symbolHeight = ($height + 2 * self::MARGIN) * $blockSize;
 
 		// Define colors
-		$black = new \ImagickPixel('#000000');
-		$white = new \ImagickPixel('#ffffff');
+		$black = new ImagickPixel('#000000');
+		$white = new ImagickPixel('#ffffff');
 
 		// Prepare canvas
-		$canvas = new \Imagick();
+		$canvas = new Imagick();
 		$canvas->newImage($symbolWidth, $symbolHeight, $white, "png");
-		$canvas->setImageColorspace(\Imagick::COLORSPACE_RGB);
+		$canvas->setImageColorspace(Imagick::COLORSPACE_RGB);
 		$canvas->setImageDepth(8);
 
 		// Draw blocks
-		$draw = new \ImagickDraw();
+		$draw = new ImagickDraw();
 		$draw->setFillColor($black);
 		$top = self::MARGIN * $blockSize;
 		for ($h = 1; $h <= $height; $h++) {
 			$left = self::MARGIN * $blockSize;
 			$qrCodePointRow = $qrCode->getRow($h);
-			for ($w = 1; $w <= $width; $w++) {
-				$qrCodePpoint = $qrCodePointRow->getPoint($w);
-				if ($qrCodePpoint->isActive()) {
-					$draw->rectangle($left, $top, $left + $blockSize, $top + $blockSize);
+			if ($qrCodePointRow !== null) {
+				for ($w = 1; $w <= $width; $w++) {
+					$qrCodePpoint = $qrCodePointRow->getPoint($w);
+					if ($qrCodePpoint !== null && $qrCodePpoint->isActive()) {
+						$draw->rectangle($left, $top, $left + $blockSize, $top + $blockSize);
+					}
+					$left += $blockSize;
 				}
-				$left += $blockSize;
 			}
 			$top += $blockSize;
 		}

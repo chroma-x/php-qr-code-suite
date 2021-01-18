@@ -1,16 +1,16 @@
 <?php
 
-namespace QrCodeSuite\QrEncode;
+namespace ChromaX\QrCodeSuite\QrEncode;
 
-use QrCodeSuite\QrEncode\Exception\QrEncoderException;
-use QrCodeSuite\QrEncode\QrCode\QrCode;
-use QrCodeSuite\QrEncode\QrCode\QrCodePointRow;
-use QrCodeSuite\QrEncode\QrCode\QrCodePoint;
+use ChromaX\QrCodeSuite\QrEncode\Exception\QrEncoderException;
+use ChromaX\QrCodeSuite\QrEncode\QrCode\QrCode;
+use ChromaX\QrCodeSuite\QrEncode\QrCode\QrCodePointRow;
+use ChromaX\QrCodeSuite\QrEncode\QrCode\QrCodePoint;
 
 /**
  * Class QrEncoder
  *
- * @package QrCodeSuite\QrEncode
+ * @package ChromaX\QrCodeSuite\QrEncode
  */
 class QrEncoder
 {
@@ -85,7 +85,7 @@ class QrEncoder
 	{
 		$chars = str_split($contents);
 		foreach ($chars as $char) {
-			if (0 == ord($char)) {
+			if (0 === ord($char)) {
 				throw new QrEncoderException('Encoding null character failed');
 			}
 		}
